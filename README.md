@@ -2,6 +2,8 @@
 
 An AI-powered **RAG (Retrieval-Augmented Generation) agent** for assessing and verifying ASPICE v4.0 process capability levels. The agent combines an embedded ASPICE v4.0 knowledge base with semantic search and optional LLM generation to provide accurate, standards-compliant assessment guidance.
 
+📘 **[Read the Complete User Manual](USER_MANUAL.md)** — Detailed guide with 40+ use cases for all features
+
 ---
 
 ## ✨ Features
@@ -217,6 +219,26 @@ The agent supports runtime knowledge enhancement — add your organisation's:
 
 - No data is sent externally unless `OPENAI_API_KEY` is set.
 - With no API key the agent runs fully locally using sentence-transformers and FAISS.
+
+---
+
+## 📚 Documentation
+
+### User Manual
+The comprehensive **[USER_MANUAL.md](USER_MANUAL.md)** includes:
+- **8 major feature sections** with detailed explanations
+- **40+ real-world use cases** with step-by-step instructions
+- **Understanding ASPICE** — Capability levels, rating scales, and process areas
+- **Troubleshooting guide** — Solutions to common issues
+- **Best practices** — Tips for effective assessment and improvement
+- **FAQ** — Frequently asked questions
+
+### Quick Links
+- [Getting Started Guide](USER_MANUAL.md#getting-started)
+- [Feature Use Cases](USER_MANUAL.md#features-and-use-cases)
+- [CLI Commands](USER_MANUAL.md#7-command-line-interface-cli)
+- [Programmatic API Examples](USER_MANUAL.md#8-programmatic-api)
+- [Troubleshooting](USER_MANUAL.md#troubleshooting)
 
 ---
 
