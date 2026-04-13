@@ -628,7 +628,10 @@ elif page == "🧠 Knowledge Enhancement":
             if custom_text.strip():
                 agent.add_custom_knowledge(custom_text, doc_id=doc_title or None)
                 st.session_state.custom_knowledge_added.append(
-                    {"id": doc_title or f"DOC_{len(st.session_state.custom_knowledge_added)}", "preview": custom_text[:120] + "…"}
+                    {
+                        "id": doc_title or f"DOC_{len(st.session_state.custom_knowledge_added)}",
+                        "preview": (custom_text[:120] + "…") if len(custom_text) > 120 else custom_text,
+                    }
                 )
                 st.success("✅ Knowledge added and index updated!")
             else:

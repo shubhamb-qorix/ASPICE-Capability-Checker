@@ -185,9 +185,15 @@ class TestAspiceAgent:
         assert agent.get_history() == []
 
     def test_add_custom_knowledge(self, agent):
-        agent.add_custom_knowledge("Custom note: our SWE.1 uses DOORS NG.", doc_id="TEST_DOC")
-        answer = agent.chat("What tool do we use for SWE.1?")
+        agent.add_custom_knowledge(
+            "Custom note: our SWE.1 uses DOORS NG for requirements management.",
+            doc_id="TEST_DOC",
+        )
+        answer = agent.chat("What tool does our organisation use for requirements management?")
         assert isinstance(answer, str)
+        assert len(answer) > 10
+        # The custom doc should be retrievable — "DOORS" must appear in the context/answer
+        assert "DOORS" in answer
 
     def test_assess_multiple_processes(self, agent):
         assessments = {

@@ -18,6 +18,9 @@ from typing import Any
 
 import numpy as np
 
+# Small value added to vector norms to prevent division by zero during normalisation
+_EPSILON = 1e-9
+
 from .aspice_knowledge import (
     ASSESSMENT_QUESTIONS,
     CAPABILITY_LEVELS,
@@ -139,7 +142,7 @@ def _try_build_neural_store(docs: list[dict[str, str]]) -> Any | None:
         model = SentenceTransformer("all-MiniLM-L6-v2")
         texts = [d["content"] for d in docs]
         emb = model.encode(texts, show_progress_bar=False, convert_to_numpy=True)
-        norm = emb / (np.linalg.norm(emb, axis=1, keepdims=True) + 1e-9)
+        norm = emb / (np.linalg.norm(emb, axis=1, keepdims=True) + _EPSILON)
         index = faiss.IndexFlatIP(emb.shape[1])
         index.add(norm.astype(np.float32))
 
@@ -154,7 +157,7 @@ def _try_build_neural_store(docs: list[dict[str, str]]) -> Any | None:
 
             def search(self, query, top_k=5):
                 q = self._model.encode([query], show_progress_bar=False, convert_to_numpy=True)
-                q = (q / (np.linalg.norm(q, axis=1, keepdims=True) + 1e-9)).astype(np.float32)
+                q = (q / (np.linalg.norm(q, axis=1, keepdims=True) + _EPSILON)).astype(np.float32)
                 _, indices = self._index.search(q, top_k)
                 return [self._docs[i] for i in indices[0] if i < len(self._docs)]
 
