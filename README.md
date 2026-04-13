@@ -97,6 +97,8 @@ Structured Answer
 
 ## 🚀 Quick Start
 
+🚀 **[Quick Start Guide](QUICK_START.md)** — Get running in 5 minutes!
+
 ### 1. Install dependencies
 
 ```bash
